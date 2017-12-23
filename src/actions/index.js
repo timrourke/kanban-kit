@@ -195,10 +195,11 @@ export const deleteRow = (id) => ({
  * @param {String} title
  * @return {Object}
  */
-export const createCard = (title) => ({
+export const createCard = (column, title) => ({
   type: CREATE_CARD,
   payload: {
     id: v4(),
+    column,
     title,
   },
 });
@@ -211,12 +212,13 @@ export const createCard = (title) => ({
  * @param {Number} order
  * @return {Object}
  */
-export const updateCard = (id, title, order) => ({
+export const updateCard = (id, column, order, title) => ({
   type: UPDATE_CARD,
   payload: {
     id,
-    title,
+    column,
     order,
+    title,
   },
 });
 

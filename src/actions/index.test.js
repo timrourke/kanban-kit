@@ -95,20 +95,22 @@ it('should create action for "deleteRow"', () => {
 });
 
 it('should create action for "createCard"', () => {
-  const action = actions.createCard('foo');
+  const action = actions.createCard(5, 'foo');
 
   expect(action.type).toBe(actions.CREATE_CARD);
   expect(action.payload.id).toBeDefined();
+  expect(action.payload.column).toBe(5);
   expect(action.payload.title).toBe('foo');
 });
 
 it('should create action for "updateCard"', () => {
-  const action = actions.updateCard('some-id', 'foo', 7);
+  const action = actions.updateCard('some-id', 'some-column-id', 7, 'foo');
 
   expect(action.type).toBe(actions.UPDATE_CARD);
   expect(action.payload.id).toBe('some-id');
-  expect(action.payload.title).toBe('foo');
+  expect(action.payload.column).toBe('some-column-id');
   expect(action.payload.order).toBe(7);
+  expect(action.payload.title).toBe('foo');
 });
 
 it('should create action for "deleteCard"', () => {
