@@ -38,7 +38,7 @@ it('should update a card', () => {
     cards,
     [{
       id: 'some-id',
-      column: 54,
+      column: 'some-column-id',
       order: 7,
       title: 'An existing card',
       createdAt: new Date(),
@@ -48,10 +48,13 @@ it('should update a card', () => {
   );
 
   expect(store.getState()[0].id).toBe('some-id');
+  expect(store.getState()[0].column).toBe('some-column-id');
+  expect(store.getState()[0].order).toBe(7);
+  expect(store.getState()[0].title).toBe('An existing card');
 
-  store.dispatch(updateCard('some-id', 92, 3, 'A new title'));
+  store.dispatch(updateCard('some-id', 'new-column-id', 3, 'A new title'));
 
-  expect(store.getState()[0].column).toBe(92);
+  expect(store.getState()[0].column).toBe('new-column-id');
   expect(store.getState()[0].order).toBe(3);
   expect(store.getState()[0].title).toBe('A new title');
 });

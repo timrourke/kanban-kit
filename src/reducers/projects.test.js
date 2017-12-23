@@ -45,6 +45,7 @@ it('should update a project', () => {
   );
 
   expect(store.getState()[0].id).toBe('some-id');
+  expect(store.getState()[0].title).toBe('An existing project');
 
   store.dispatch(updateProject('some-id', 'A new title'));
 

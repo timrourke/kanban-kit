@@ -2,9 +2,6 @@ import {
   CREATE_PROJECT,
   UPDATE_PROJECT,
   DELETE_PROJECT,
-  createCard,
-  updateCard,
-  deleteCard,
 } from './../actions';
 
 const projects = (state = [], action) => {

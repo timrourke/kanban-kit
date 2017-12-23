@@ -2,9 +2,6 @@ import {
   CREATE_BOARD,
   UPDATE_BOARD,
   DELETE_BOARD,
-  createBoard,
-  updateBoard,
-  deleteBoard,
 } from './../actions';
 
 const boards = (state = [], action) => {

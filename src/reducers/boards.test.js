@@ -38,7 +38,7 @@ it('should update a board', () => {
     boards,
     [{
       id: 'some-id',
-      porject: 'some-project-id',
+      project: 'some-project-id',
       title: 'An existing board',
       createdAt: new Date(),
       updatedAt: null,
@@ -47,6 +47,8 @@ it('should update a board', () => {
   );
 
   expect(store.getState()[0].id).toBe('some-id');
+  expect(store.getState()[0].project).toBe('some-project-id');
+  expect(store.getState()[0].title).toBe('An existing board');
 
   store.dispatch(updateBoard('some-id', 'some-other-project-id', 'A new title'));
 

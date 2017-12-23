@@ -1,14 +1,14 @@
 import {
-  CREATE_CARD,
-  UPDATE_CARD,
-  DELETE_CARD,
+  CREATE_COLUMN,
+  UPDATE_COLUMN,
+  DELETE_COLUMN,
 } from './../actions';
 
-const cards = (state = [], action) => {
+const columns = (state = [], action) => {
   const { payload } = action;
 
   switch (action.type) {
-    case CREATE_CARD:
+    case CREATE_COLUMN:
       return [
         ...state,
         Object.assign({}, payload, {
@@ -17,23 +17,23 @@ const cards = (state = [], action) => {
           deletedAt: null,
         }),
       ];
-    case UPDATE_CARD:
+    case UPDATE_COLUMN:
       return state
-        .map((card) => {
-          if (card.id !== payload.id) {
-            return card;
+        .map((project) => {
+          if (project.id !== payload.id) {
+            return project;
           }
 
-          return Object.assign({}, card, payload, {
+          return Object.assign({}, project, payload, {
             updatedAt: new Date(),
           });
         });
-    case DELETE_CARD:
+    case DELETE_COLUMN:
       return state
-        .filter((card) => card.id !== payload.id);
+        .filter((project) => project.id !== payload.id);
     default:
       return state;
   }
 }
 
-export default cards;
+export default columns;
