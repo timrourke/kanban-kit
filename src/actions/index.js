@@ -201,6 +201,7 @@ export const deleteRow = (id) => ({
  * Create a new card
  *
  * @param {String} column
+ * @param {String} row
  * @param {String} title
  * @return {Object}
  */
