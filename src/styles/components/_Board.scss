@@ -1,7 +1,11 @@
 .Board {
   height: inherit;
   overflow: hidden;
-  padding: 0.5em;
+}
+
+.Board-header {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5em 0.5em 0.25em 0.5em;
 }
 
 .Board-title {
