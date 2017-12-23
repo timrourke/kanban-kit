@@ -161,10 +161,11 @@ export const deleteColumn = (id) => ({
  * @param {String} title
  * @return {Object}
  */
-export const createRow = (title) => ({
+export const createRow = (board, title) => ({
   type: CREATE_ROW,
   payload: {
     id: v4(),
+    board,
     title,
   },
 });
@@ -173,16 +174,18 @@ export const createRow = (title) => ({
  * Update a row
  *
  * @param {String} id
- * @param {String} title
+ * @param {String} board
  * @param {Number} order
+ * @param {String} title
  * @return {Object}
  */
-export const updateRow = (id, title, order) => ({
+export const updateRow = (id, board, order, title) => ({
   type: UPDATE_ROW,
   payload: {
     id,
-    title,
+    board,
     order,
+    title,
   },
 });
 
