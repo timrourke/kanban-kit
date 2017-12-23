@@ -204,11 +204,12 @@ export const deleteRow = (id) => ({
  * @param {String} title
  * @return {Object}
  */
-export const createCard = (column, title) => ({
+export const createCard = (column, row, title) => ({
   type: CREATE_CARD,
   payload: {
     id: v4(),
     column,
+    row,
     title,
   },
 });

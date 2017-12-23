@@ -99,11 +99,12 @@ it('should create action for "deleteRow"', () => {
 });
 
 it('should create action for "createCard"', () => {
-  const action = actions.createCard(5, 'foo');
+  const action = actions.createCard('some-column-id', 'some-row-id', 'foo');
 
   expect(action.type).toBe(actions.CREATE_CARD);
   expect(action.payload.id).toBeDefined();
-  expect(action.payload.column).toBe(5);
+  expect(action.payload.column).toBe('some-column-id');
+  expect(action.payload.row).toBe('some-row-id');
   expect(action.payload.title).toBe('foo');
 });
 

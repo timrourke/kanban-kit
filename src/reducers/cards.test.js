@@ -19,14 +19,15 @@ it('should create a card', () => {
 
   expect(store.getState()).toMatchObject([]);
 
-  store.dispatch(createCard(87, 'A cool new card'));
+  store.dispatch(createCard('some-column-id', 'some-row-id', 'A cool new card'));
 
   expect(store.getState()).toHaveLength(1);
 
   const newCard = store.getState()[0];
   
   expect(newCard.id).toBeDefined();
-  expect(newCard.column).toBe(87);
+  expect(newCard.column).toBe('some-column-id');
+  expect(newCard.row).toBe('some-row-id');
   expect(newCard.title).toBe('A cool new card');
   expect(newCard.createdAt).toBeInstanceOf(Date);
   expect(newCard.updatedAt).toBe(null);
@@ -40,6 +41,7 @@ it('should update a card', () => {
       id: 'some-id',
       column: 'some-column-id',
       order: 7,
+      row: 'some-row-id',
       title: 'An existing card',
       createdAt: new Date(),
       updatedAt: null,
@@ -56,6 +58,7 @@ it('should update a card', () => {
 
   expect(store.getState()[0].column).toBe('new-column-id');
   expect(store.getState()[0].order).toBe(3);
+  expect(store.getState()[0].row).toBe('some-row-id');
   expect(store.getState()[0].title).toBe('A new title');
 });
 
