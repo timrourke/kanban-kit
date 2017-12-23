@@ -1,0 +1,15 @@
+.Card {
+  background: white;
+  margin: 1px;
+  outline: 1px solid #eee;
+  padding: 0.5em;
+}
+
+.Card-permalink {
+  @extend .h5;
+  margin-top: 0;
+}
+
+.Card-title {
+  margin: 0;
+}

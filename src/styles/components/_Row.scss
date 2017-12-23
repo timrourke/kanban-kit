@@ -18,38 +18,3 @@
   @extend .h4;
   margin-top: 0;
 }
-
-.Column-wrap {
-  display: flex;
-}
-
-.Column {
-  background: #eee;
-  flex: 1;
-  list-style-type: none;
-  margin: 0 0.25em;
-}
-
-.Column:first-child {
-  margin-left: 0;
-}
-
-.Column:last-child {
-  margin-right: 0;
-}
-
-.Card {
-  background: white;
-  margin: 1px;
-  outline: 1px solid #eee;
-  padding: 0.5em;
-}
-
-.Card-permalink {
-  @extend .h5;
-  margin-top: 0;
-}
-
-.Card-title {
-  margin: 0;
-}
