@@ -68,13 +68,15 @@ export const deleteProject = (id) => ({
 /**
  * Create a new board
  *
+ * @param {String} project
  * @param {String} title
  * @return {Object}
  */
-export const createBoard = (title) => ({
+export const createBoard = (project, title) => ({
   type: CREATE_BOARD,
   payload: {
     id: v4(),
+    project,
     title,
   },
 });
@@ -83,13 +85,15 @@ export const createBoard = (title) => ({
  * Update a board
  *
  * @param {String} id
+ * @param {String} project
  * @param {String} title
  * @return {Object}
  */
-export const updateBoard = (id, title) => ({
+export const updateBoard = (id, project, title) => ({
   type: UPDATE_BOARD,
   payload: {
     id,
+    project,
     title,
   },
 });
@@ -192,6 +196,7 @@ export const deleteRow = (id) => ({
 /**
  * Create a new card
  *
+ * @param {String} column
  * @param {String} title
  * @return {Object}
  */
@@ -208,8 +213,9 @@ export const createCard = (column, title) => ({
  * Update a card
  *
  * @param {String} id
- * @param {String} title
+ * @param {String} column
  * @param {Number} order
+ * @param {String} title
  * @return {Object}
  */
 export const updateCard = (id, column, order, title) => ({
