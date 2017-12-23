@@ -1,0 +1,10 @@
+.Board {
+  height: inherit;
+  overflow: hidden;
+  padding: 0.5em;
+}
+
+.Board-title {
+  @extend .h3;
+  margin-top: 0;
+}

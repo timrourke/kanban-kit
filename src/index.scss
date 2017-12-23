@@ -1,6 +1,20 @@
 @import 'styles/index';
 
 html {
-	color: #445;
+  background: #ececec;
+	color: #333;
 	font-family: 'Source Sans Pro', Helvetica, sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+#root {
+  height: inherit;
 }

@@ -1,0 +1,14 @@
+.App {
+  height: inherit;
+}
+
+.App-header {
+  background: #334;
+  color: #eee;
+  padding: 1em;
+}
+
+.App-title {
+  @extend .h4;
+  margin-top: 0;
+}
