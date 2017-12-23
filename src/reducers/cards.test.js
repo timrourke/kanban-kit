@@ -63,9 +63,11 @@ it('should delete a card', () => {
 
   store.dispatch(createCard(87, 'A cool new card'));
 
-  expect(store.getState()).toHaveLength(1);
+  const existingCards = store.getState();
 
-  store.dispatch(deleteCard(87));
+  expect(existingCards).toHaveLength(1);
 
-  expect(store.getState()).toHaveLength(1);
+  store.dispatch(deleteCard(existingCards[0].id));
+
+  expect(store.getState()).toHaveLength(0);
 });
