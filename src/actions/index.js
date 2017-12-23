@@ -158,6 +158,7 @@ export const deleteColumn = (id) => ({
 /**
  * Create a new row
  *
+ * @param {String} board
  * @param {String} title
  * @return {Object}
  */
