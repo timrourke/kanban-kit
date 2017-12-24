@@ -1,0 +1,10 @@
+.AppHeader {
+  background: #334;
+  color: #eee;
+  padding: 0.5em;
+}
+
+.AppHeader-title {
+  @extend .h4;
+  margin-top: 0;
+}
