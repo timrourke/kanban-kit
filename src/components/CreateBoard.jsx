@@ -12,6 +12,13 @@ class CreateBoard extends Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
+  /**
+   * Handle th form's input's change event
+   *
+   * Set the title for the new board
+   *
+   * @param {Object} event
+   */
   handleOnChange(event) {
     event.preventDefault();
 
@@ -20,6 +27,16 @@ class CreateBoard extends Component {
     });
   }
 
+  /**
+   * Handle the form's submit event
+   *
+   * Create a board and transition to the new board
+   *
+   * TODO: transition to new board
+   * TODO: pass project ID into component
+   *
+   * @param {Object} event
+   */
   handleOnSubmit(event) {
     event.preventDefault();
 
@@ -31,6 +48,13 @@ class CreateBoard extends Component {
 
     // TODO: pass in project id
     this.props.createBoard('some-project-id', newBoardTitle);
+
+    this.setState({
+      newBoardTitle: '',
+    });
+
+    // TODO: use redux-thunk to transition to new board in create action
+    this.props.history.push('/boards');
   }
 
   render() {
@@ -45,6 +69,7 @@ class CreateBoard extends Component {
             name="CreateBoard-title-input"
             placeholder="New board title"
             type="text"
+            value={this.state.newBoardTitle}
             onChange={this.handleOnChange}
             />
           <input

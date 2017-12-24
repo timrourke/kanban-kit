@@ -9,6 +9,15 @@ class BoardsList extends Component {
           <h3>Boards</h3>
         </header>
         <ul>
+          {this.props.boards.map((board) => {
+            const boardLink = `/boards/${board.id}`;
+
+            return (
+              <li key={board.id}>
+                <Link to={boardLink}>{board.title}</Link>
+              </li>
+            );
+          })}
           <li>
             <Link to="/boards/single">Board</Link>
           </li>
