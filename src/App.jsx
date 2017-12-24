@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 
+import AppHeaderContainer from './containers/AppHeaderContainer';
 import Board from './components/Board';
 import BoardsList from './components/BoardsList';
+import CreateBoardContainer from './containers/CreateBoardContainer';
+
 import configureStore from './configureStore';
 
 const store = configureStore();
+
+console.log('store', store)
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Kanban Kit</h1>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/boards">Boards</Link>
-                </li>
-              </ul>
-            </nav>
-          </header>
-          <Route exact path="/boards" component={BoardsList} />
-          <Route path="/boards/single" component={Board} />
-        </div>
+        <Router>
+          <div className="App">
+            <AppHeaderContainer />
+            <Route exact path="/boards" component={BoardsList} />
+            <Route path="/boards/single" component={Board} />
+            <Route path="/boards/create" component={CreateBoardContainer} />
+          </div>
+        </Router>
       </Provider>
     );
   }
