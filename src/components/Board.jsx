@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { debounce } from 'lodash';
 import Row from './Row';
 
@@ -79,4 +80,4 @@ class Board extends Component {
   }
 }
 
-export default Board;
+export default withRouter(Board);
