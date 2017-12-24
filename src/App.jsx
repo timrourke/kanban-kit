@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 import AppHeaderContainer from './containers/AppHeaderContainer';
 import Board from './components/Board';
-import BoardsList from './components/BoardsList';
+import BoardsListContainer from './containers/BoardsListContainer';
 import CreateBoardContainer from './containers/CreateBoardContainer';
 
 import configureStore from './configureStore';
@@ -20,7 +20,7 @@ class App extends Component {
         <Router>
           <div className="App">
             <AppHeaderContainer />
-            <Route exact path="/boards" component={BoardsList} />
+            <Route exact path="/boards" component={BoardsListContainer} />
             <Route path="/boards/single" component={Board} />
             <Route path="/boards/create" component={CreateBoardContainer} />
           </div>
