@@ -23,7 +23,7 @@ class CreateBoard extends Component {
     event.preventDefault();
 
     this.setState({
-      newBoardTitle: (event.target.value || '').trim(),
+      newBoardTitle: event.target.value,
     });
   }
 
