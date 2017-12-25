@@ -1,10 +1,34 @@
 .AppHeader {
-  background: #334;
-  color: #eee;
+  @extend .clearfix;
+  background: #333;
   padding: 0.5em;
 }
 
 .AppHeader-title {
   @extend .h4;
+  color: #eee;
+  float: left;
   margin-top: 0;
+}
+
+.AppHeader-nav {
+  float: right;
+  list-style-type: none;
+}
+
+.AppHeader-nav li {
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.AppHeader-nav li:last-of-type {
+  margin-right: 0;
+}
+
+.AppHeader-nav li a {
+  color: #ccc;
+}
+
+.AppHeader-nav li a.active {
+  color: white;
 }
