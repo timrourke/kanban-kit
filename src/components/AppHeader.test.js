@@ -39,3 +39,23 @@ import AppHeader from './AppHeader';
     }
   });
 });
+
+[
+  ['', false],
+  ['/projects/a1-b2-c3', false],
+  ['/projects/create', true]
+].forEach(([pathname, expected]) => {
+  it('should parse a pathname for creating projects', () => {
+    expect(AppHeader.pathMatchesProjectsCreate(pathname)).toBe(expected);
+  });
+});
+
+[
+  ['', false],
+  ['/projects/a1-b2-c3/boards/d1-e2-f3', false],
+  ['/projects/a1-b2-c3/boards/create', true]
+].forEach(([pathname, expected]) => {
+  it('should parse a pathname for creating projects', () => {
+    expect(AppHeader.pathMatchesBoardsCreate(pathname)).toBe(expected);
+  });
+});
