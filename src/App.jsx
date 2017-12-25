@@ -25,8 +25,8 @@ class App extends Component {
               <Route exact path="/projects/create" component={CreateProjectContainer} />
               <Route exact path="/projects/:projectId" component={BoardsListContainer} />
               <Route exact path="/projects/:projectId/boards" component={BoardsListContainer} />
+              <Route exact path="/projects/:projectId/boards/create" component={CreateBoardContainer} />
               <Route exact path="/projects/:projectId/boards/:boardId" component={Board} />
-              <Route       path="/projects/:projectId/boards/create" component={CreateBoardContainer} />
             </Switch>
           </div>
         </Router>
