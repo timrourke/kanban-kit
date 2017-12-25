@@ -11,6 +11,15 @@ import { NavLink, withRouter } from 'react-router-dom';
 const PROJECTS_PATH_REGEX = /^\/projects\/?([a-f0-9-]+)?\/?$/;
 
 /**
+ * Regular expression to match the path '/projects/create'
+ *
+ * @property PROJECTS_CREATE_PATH_REGEX
+ * @type {RegExp}
+ * @final
+ */
+const PROJECTS_CREATE_PATH_REGEX = /^\/projects\/create\/?$/;
+
+/**
  * Regular expression to match a '/projects/:projectId/boards' or
  * '/projects/:projectId/boards/:boardId' path
  *
@@ -19,6 +28,15 @@ const PROJECTS_PATH_REGEX = /^\/projects\/?([a-f0-9-]+)?\/?$/;
  * @final
  */
 const BOARDS_PATH_REGEX = /^\/projects\/?([a-f0-9-]+)(\/boards\/?)?([a-f0-9-]+)?\/?$/;
+
+/**
+ * Regular expression to match a '/projects/:boardId/boards/create' path
+ *
+ * @property BOARDS_CREATE_PATH_REGEX
+ * @type {RegExp}
+ * @final
+ */
+const BOARDS_CREATE_PATH_REGEX = /^\/projects\/([a-f0-9-]+)\/boards\/create\/?$/;
 
 class AppHeader extends Component {
 
@@ -35,6 +53,17 @@ class AppHeader extends Component {
   }
 
   /**
+   * Test a string for matching against a '/projects/create' path
+   *
+   * @param {String} pathname
+   * @return {Boolean}
+   * @static
+   */
+  static pathMatchesProjectsCreate(pathname) {
+    return PROJECTS_CREATE_PATH_REGEX.test(pathname);
+  }
+
+  /**
    * Test a string for matching against a '/projects/:projectId/boards' or
    * '/projects/:projectId/boards/:boardId' path
    *
@@ -44,6 +73,18 @@ class AppHeader extends Component {
    */
   static pathMatchesBoards(pathname) {
     return BOARDS_PATH_REGEX.exec(pathname);
+  }
+
+  /**
+   * Test a string for matching against a '/projects/:projectId/boards/create'
+   * path
+   *
+   * @param {String} pathname
+   * @return {Boolean}
+   * @static
+   */
+  static pathMatchesBoardsCreate(pathname) {
+    return BOARDS_CREATE_PATH_REGEX.test(pathname);
   }
 
   /**
@@ -104,18 +145,43 @@ class AppHeader extends Component {
    * @return {String}
    */
   getLocationSuffix(pathname = '') {
-    let matches;
+    return this.getLocationSuffixForProjectsPaths(pathname) ||
+      this.getLocationSuffixForBoardsPaths(pathname);
+  }
 
-    matches = AppHeader.pathMatchesProjects(pathname)
+  /**
+   * Get the string suffix describing a current router location for a projects
+   * page or subpage, if any
+   *
+   * @param {String} pathname
+   * @return {String}
+   */
+  getLocationSuffixForProjectsPaths(pathname) {
+    let matches = AppHeader.pathMatchesProjects(pathname)
+
     if (matches) {
       const projectId = matches[1];
 
       return (projectId) ?
         ` - ${this.getProjectTitleById(projectId)}: Boards`:
         ' - Projects';
+    } else if (AppHeader.pathMatchesProjectsCreate(pathname)) {
+      return ' - Create a project';
     }
 
-    matches = AppHeader.pathMatchesBoards(pathname)
+    return '';
+  }
+
+  /**
+   * Get the string suffix describing a current router location for a boards
+   * page or subpage, if any
+   *
+   * @param {String} pathname
+   * @return {String}
+   */
+  getLocationSuffixForBoardsPaths(pathname) {
+    let matches = AppHeader.pathMatchesBoards(pathname)
+
     if (matches) {
       const projectId = matches[1];
       const boardId   = matches[3] || null;
@@ -123,6 +189,8 @@ class AppHeader extends Component {
       return (boardId) ?
         ` - ${this.getProjectTitleById(projectId)}: ${this.getBoardTitleById(boardId)}`:
         ` - ${this.getProjectTitleById(projectId)}: Boards`;
+    } else if (AppHeader.pathMatchesBoardsCreate(pathname)) {
+      return ' - Create a board';
     }
 
     return '';
