@@ -51,11 +51,16 @@ import AppHeader from './AppHeader';
 });
 
 [
-  ['', false],
-  ['/projects/a1-b2-c3/boards/d1-e2-f3', false],
-  ['/projects/a1-b2-c3/boards/create', true]
+  ['', null],
+  ['/projects/a1-b2-c3/boards/d1-e2-f3', null],
+  ['/projects/a1-b2-c3/boards/create', ['/projects/a1-b2-c3/boards/create', 'a1-b2-c3']]
 ].forEach(([pathname, expected]) => {
-  it('should parse a pathname for creating projects', () => {
-    expect(AppHeader.pathMatchesBoardsCreate(pathname)).toBe(expected);
-  });
+  if (Array.isArray(expected)) {
+    expect(AppHeader.pathMatchesBoardsCreate(pathname))
+      .toEqual(expect.arrayContaining(expected));
+  } else {
+    it('should parse a pathname for creating boards', () => {
+      expect(AppHeader.pathMatchesBoardsCreate(pathname)).toBe(expected);
+    });
+  }
 });

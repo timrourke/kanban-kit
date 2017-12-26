@@ -84,7 +84,7 @@ class AppHeader extends Component {
    * @static
    */
   static pathMatchesBoardsCreate(pathname) {
-    return BOARDS_CREATE_PATH_REGEX.test(pathname);
+    return BOARDS_CREATE_PATH_REGEX.exec(pathname);
   }
 
   /**
@@ -189,8 +189,14 @@ class AppHeader extends Component {
       return (boardId) ?
         ` - ${this.getProjectTitleById(projectId)}: ${this.getBoardTitleById(boardId)}`:
         ` - ${this.getProjectTitleById(projectId)}: Boards`;
-    } else if (AppHeader.pathMatchesBoardsCreate(pathname)) {
-      return ' - Create a board';
+    }
+
+    matches = AppHeader.pathMatchesBoardsCreate(pathname);
+
+    if (matches) {
+      const projectId = matches[1];
+
+      return ` - ${this.getProjectTitleById(projectId)}: Create a board`;
     }
 
     return '';
@@ -241,9 +247,6 @@ class AppHeader extends Component {
           <ul>
             <li>
               <NavLink to="/projects">Projects</NavLink>
-            </li>
-            <li>
-              <NavLink to="/project/boards">Boards</NavLink>
             </li>
           </ul>
         </nav>
