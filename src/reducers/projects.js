@@ -2,7 +2,7 @@ import {
   CREATE_PROJECT,
   UPDATE_PROJECT,
   DELETE_PROJECT,
-} from './../actions';
+} from './../actions/projects';
 
 const projects = (state = [], action) => {
   const { payload } = action;

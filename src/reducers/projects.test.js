@@ -4,7 +4,7 @@ import {
   createProject,
   updateProject,
   deleteProject,
-} from './../actions';
+} from './../actions/projects';
 
 import projects from './projects';
 
@@ -24,7 +24,7 @@ it('should create a project', () => {
   expect(store.getState()).toHaveLength(1);
 
   const newProject = store.getState()[0];
-  
+
   expect(newProject.id).toBeDefined();
   expect(newProject.title).toBe('A cool new project');
   expect(newProject.createdAt).toBeInstanceOf(Date);
