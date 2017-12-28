@@ -4,7 +4,7 @@ import {
   createCard,
   updateCard,
   deleteCard,
-} from './../actions';
+} from './../actions/cards';
 
 import cards from './cards';
 
@@ -24,7 +24,7 @@ it('should create a card', () => {
   expect(store.getState()).toHaveLength(1);
 
   const newCard = store.getState()[0];
-  
+
   expect(newCard.id).toBeDefined();
   expect(newCard.column).toBe('some-column-id');
   expect(newCard.row).toBe('some-row-id');

@@ -2,7 +2,7 @@ import {
   CREATE_CARD,
   UPDATE_CARD,
   DELETE_CARD,
-} from './../actions';
+} from './../actions/cards';
 
 const cards = (state = [], action) => {
   const { payload } = action;

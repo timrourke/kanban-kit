@@ -52,3 +52,12 @@ export const deleteCard = (id) => ({
   type: DELETE_CARD,
   payload: {id},
 });
+
+export default {
+  CREATE_CARD,
+  UPDATE_CARD,
+  DELETE_CARD,
+  createCard,
+  updateCard,
+  deleteCard,
+};
