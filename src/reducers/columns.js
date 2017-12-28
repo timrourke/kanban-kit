@@ -2,7 +2,7 @@ import {
   CREATE_COLUMN,
   UPDATE_COLUMN,
   DELETE_COLUMN,
-} from './../actions';
+} from './../actions/columns';
 
 const columns = (state = [], action) => {
   const { payload } = action;

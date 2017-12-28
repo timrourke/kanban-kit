@@ -4,7 +4,7 @@ import {
   createColumn,
   updateColumn,
   deleteColumn,
-} from './../actions';
+} from './../actions/columns';
 
 import columns from './columns';
 
@@ -24,7 +24,7 @@ it('should create a column', () => {
   expect(store.getState()).toHaveLength(1);
 
   const newColumn = store.getState()[0];
-  
+
   expect(newColumn.id).toBeDefined();
   expect(newColumn.board).toBe('some-board-id');
   expect(newColumn.title).toBe('A cool new column');
