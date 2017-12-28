@@ -4,7 +4,7 @@ import {
   createRow,
   updateRow,
   deleteRow,
-} from './../actions';
+} from './../actions/rows';
 
 import rows from './rows';
 
@@ -24,7 +24,7 @@ it('should create a row', () => {
   expect(store.getState()).toHaveLength(1);
 
   const newRow = store.getState()[0];
-  
+
   expect(newRow.id).toBeDefined();
   expect(newRow.board).toBe('some-board-id');
   expect(newRow.title).toBe('A cool new row');

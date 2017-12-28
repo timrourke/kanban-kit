@@ -2,7 +2,7 @@ import {
   CREATE_ROW,
   UPDATE_ROW,
   DELETE_ROW,
-} from './../actions';
+} from './../actions/rows';
 
 const rows = (state = [], action) => {
   const { payload } = action;
