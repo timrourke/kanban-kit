@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import CreateBoard from './../components/CreateBoard';
 import {
   createBoard,
-} from './../actions/index';
+} from './../actions/boards';
 
 const mapDispatchToProps = (dispatch) => ({
   createBoard(project, title) {
