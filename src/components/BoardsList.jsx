@@ -8,24 +8,44 @@ class BoardsList extends Component {
     const createBoardsLink = `${boardsLinkPrefix}/create`;
 
     return (
-      <div className="BoardsList">
-        <header className="BoardsList-header">
-          <h3>Boards</h3>
-        </header>
-        <ul>
-          {this.props.boards.map((board) => {
-            const boardLink = `${boardsLinkPrefix}/${board.id}`;
+      <div className='BoardsList'>
+        <div className='table'>
+          <header className='table-header'>
+            <h3 className='table-title'>Boards</h3>
+            <div className='table-action'>
+              <Link
+                className='button'
+                to={createBoardsLink}
+              >
+                Create a new Board
+              </Link>
+            </div>
+          </header>
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Created At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.boards.map((board) => {
+                const boardLink = `${boardsLinkPrefix}/${board.id}`;
 
-            return (
-              <li key={board.id}>
-                <Link to={boardLink}>{board.title}</Link>
-              </li>
-            );
-          })}
-          <li>
-            <Link to={createBoardsLink}>Create a new Board</Link>
-          </li>
-        </ul>
+                return (
+                  <tr key={board.id}>
+                    <td>
+                      <Link to={boardLink}>{board.title}</Link>
+                    </td>
+                    <td>
+                      <Link to={boardLink}>{board.createdAt}</Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

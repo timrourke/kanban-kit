@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class CreateBoard extends Component {
   constructor(props) {
@@ -6,6 +7,7 @@ class CreateBoard extends Component {
 
     this.state = {
       newBoardTitle: '',
+      projectId: props.match.params.projectId,
     };
 
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -33,7 +35,6 @@ class CreateBoard extends Component {
    * Create a board and transition to the new board
    *
    * TODO: transition to new board
-   * TODO: pass project ID into component
    *
    * @param {Object} event
    */
@@ -47,14 +48,14 @@ class CreateBoard extends Component {
     }
 
     // TODO: pass in project id
-    this.props.createBoard('some-project-id', newBoardTitle);
+    this.props.createBoard(this.state.projectId, newBoardTitle);
 
     this.setState({
       newBoardTitle: '',
     });
 
     // TODO: use redux-thunk to transition to new board in create action
-    this.props.history.push('/boards');
+    this.props.history.push(`/projects/${this.state.projectId}/boards`);
   }
 
   render() {
@@ -84,4 +85,4 @@ class CreateBoard extends Component {
   }
 }
 
-export default CreateBoard;
+export default withRouter(CreateBoard);
