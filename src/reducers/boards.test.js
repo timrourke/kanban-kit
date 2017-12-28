@@ -4,7 +4,7 @@ import {
   createBoard,
   updateBoard,
   deleteBoard,
-} from './../actions';
+} from './../actions/boards';
 
 import boards from './boards';
 
@@ -24,7 +24,7 @@ it('should create a board', () => {
   expect(store.getState()).toHaveLength(1);
 
   const newBoard = store.getState()[0];
-  
+
   expect(newBoard.id).toBeDefined();
   expect(newBoard.project).toBe('some-project-id');
   expect(newBoard.title).toBe('A cool new board');

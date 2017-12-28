@@ -2,7 +2,7 @@ import {
   CREATE_BOARD,
   UPDATE_BOARD,
   DELETE_BOARD,
-} from './../actions';
+} from './../actions/boards';
 
 const boards = (state = [], action) => {
   const { payload } = action;

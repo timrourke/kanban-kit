@@ -1,10 +1,5 @@
 import { v4 } from 'uuid';
 
-// Board action types
-export const CREATE_BOARD   = Symbol('CREATE_BOARD');
-export const UPDATE_BOARD   = Symbol('UPDATE_BOARD');
-export const DELETE_BOARD   = Symbol('DELETE_BOARD');
-
 // Column action types
 export const CREATE_COLUMN  = Symbol('CREATE_COLUMN');
 export const UPDATE_COLUMN  = Symbol('UPDATE_COLUMN');
@@ -19,50 +14,6 @@ export const DELETE_ROW     = Symbol('DELETE_ROW');
 export const CREATE_CARD    = Symbol('CREATE_CARD');
 export const UPDATE_CARD    = Symbol('UPDATE_CARD');
 export const DELETE_CARD    = Symbol('DELETE_CARD');
-
-/**
- * Create a new board
- *
- * @param {String} project
- * @param {String} title
- * @return {Object}
- */
-export const createBoard = (project, title) => ({
-  type: CREATE_BOARD,
-  payload: {
-    id: v4(),
-    project,
-    title,
-  },
-});
-
-/**
- * Update a board
- *
- * @param {String} id
- * @param {String} project
- * @param {String} title
- * @return {Object}
- */
-export const updateBoard = (id, project, title) => ({
-  type: UPDATE_BOARD,
-  payload: {
-    id,
-    project,
-    title,
-  },
-});
-
-/**
- * Delete a board
- *
- * @param {String} id
- * @return {Object}
- */
-export const deleteBoard = (id) => ({
-  type: DELETE_BOARD,
-  payload: {id},
-});
 
 /**
  * Create a new column
