@@ -3,13 +3,17 @@ import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
 
 class BoardsList extends Component {
+  getBoardsForProject(projectId) {
+    return this.props.boards.filter((board) => board.project === projectId);
+  }
+
   render() {
     const projectId = this.props.match.params.projectId;
     const boardsLinkPrefix = `/projects/${projectId}/boards`;
     const createBoardsLink = `${boardsLinkPrefix}/create`;
 
     return (
-      <div className='BoardsList'>
+      <main className='BoardsList'>
         <div className='table'>
           <header className='table-header'>
             <h3 className='table-title'>Boards</h3>
@@ -30,7 +34,7 @@ class BoardsList extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.boards.map((board) => {
+              {this.getBoardsForProject(projectId).map((board) => {
                 const boardLink = `${boardsLinkPrefix}/${board.id}`;
 
                 return (
@@ -47,7 +51,7 @@ class BoardsList extends Component {
             </tbody>
           </table>
         </div>
-      </div>
+      </main>
     );
   }
 }

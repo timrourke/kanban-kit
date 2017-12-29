@@ -57,15 +57,15 @@ class ProjectsList extends Component {
 
   render() {
     return (
-      <div className="ProjectsList">
+      <main className="ProjectsList">
         <div className="table">
           <header className="table-header">
             <h3 className='table-title'>Projects</h3>
             <div className="table-action">
-              <Link to={{
+              <Link className="button" to={{
                 pathname: '/projects',
                 search: '?create=1'
-              }}>Create a new project</Link>
+              }}>Create a new Project</Link>
             </div>
           </header>
           <table>
@@ -85,7 +85,7 @@ class ProjectsList extends Component {
                       <Link to={projectLink}>{project.title}</Link>
                     </td>
                     <td>
-                      <Link to={projectLink}>{project.createdAt}</Link>
+                      <Link to={projectLink}>{project.createdAt.toLocaleString()}</Link>
                     </td>
                   </tr>
                 );
@@ -93,7 +93,7 @@ class ProjectsList extends Component {
             </tbody>
           </table>
         </div>
-      </div>
+      </main>
     );
   }
 }

@@ -4,12 +4,18 @@ import {
   showCreateProjectModal,
   hideCreateProjectModal,
 } from './../../actions/modals';
+import {
+  createProject,
+} from './../../actions/projects';
 
 const mapStateToProps = ({modals}) => ({
   modals,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  createProject(title) {
+    dispatch(createProject(title));
+  },
   showCreateProjectModal() {
     dispatch(showCreateProjectModal());
   },
