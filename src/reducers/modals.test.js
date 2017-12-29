@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 
 import {
+  SHOW_CREATE_PROJECT_MODAL,
   showCreateProjectModal,
   hideCreateProjectModal,
 } from './../actions/modals';
@@ -12,7 +13,8 @@ describe('reducers/modals', () => {
     const store = createStore(modals);
 
     expect(store.getState()).toMatchObject({
-      isShowingCreateProjectModal: false,
+      isShowingModal: false,
+      modalShowing: null,
     });
   });
 
@@ -20,13 +22,15 @@ describe('reducers/modals', () => {
     const store = createStore(modals);
 
     expect(store.getState()).toMatchObject({
-      isShowingCreateProjectModal: false,
+      isShowingModal: false,
+      modalShowing: null,
     });
 
     store.dispatch(showCreateProjectModal());
 
     expect(store.getState()).toMatchObject({
-      isShowingCreateProjectModal: true,
+      isShowingModal: true,
+      modalShowing: SHOW_CREATE_PROJECT_MODAL,
     });
   });
 
@@ -34,19 +38,22 @@ describe('reducers/modals', () => {
     const store = createStore(modals);
 
     expect(store.getState()).toMatchObject({
-      isShowingCreateProjectModal: false,
+      isShowingModal: false,
+      modalShowing: null,
     });
 
     store.dispatch(showCreateProjectModal());
 
     expect(store.getState()).toMatchObject({
-      isShowingCreateProjectModal: true,
+      isShowingModal: true,
+      modalShowing: SHOW_CREATE_PROJECT_MODAL,
     });
 
     store.dispatch(hideCreateProjectModal());
 
     expect(store.getState()).toMatchObject({
-      isShowingCreateProjectModal: false,
+      isShowingModal: false,
+      modalShowing: null,
     });
   });
 });

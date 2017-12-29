@@ -4,18 +4,21 @@ import {
 } from './../actions/modals';
 
 const initialState = {
-  isShowingCreateProjectModal: false,
+  isShowingModal: false,
+  modalShowing: null,
 };
 
 const modals = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_CREATE_PROJECT_MODAL:
       return Object.assign({}, state, {
-        isShowingCreateProjectModal: true,
+        isShowingModal: true,
+        modalShowing: SHOW_CREATE_PROJECT_MODAL,
       });
     case HIDE_CREATE_PROJECT_MODAL:
       return Object.assign({}, state, {
-        isShowingCreateProjectModal: false,
+        isShowingModal: false,
+        modalShowing: null,
       });
     default:
       return state;

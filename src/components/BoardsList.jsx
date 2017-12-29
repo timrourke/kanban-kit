@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import withRouterAndQueryParsing from './withRouterAndQueryParsing';
 
 class BoardsList extends Component {
   render() {
@@ -51,4 +52,4 @@ class BoardsList extends Component {
   }
 }
 
-export default withRouter(BoardsList);
+export default withRouterAndQueryParsing(BoardsList);

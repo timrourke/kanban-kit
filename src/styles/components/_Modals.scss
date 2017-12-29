@@ -1,0 +1,67 @@
+.modals .modal-wrapper {
+  height: 100%;
+  left: 0;
+  padding-top: 4em;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modals .modal-wrapper:after {
+  background: rgba(0,0,0,0.5);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.modals .modal {
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 20000;
+}
+
+.modal .modal-header,
+.modal .modal-body,
+.modal .modal-footer {
+  padding: 1em;
+}
+
+.modal .modal-body,
+.modal .modal-footer {
+  background: white;
+}
+
+.modal .modal-header,
+.modal .modal-footer {
+  display: flex;
+}
+
+.modal .modal-header {
+  align-items: center;
+  background: #ccc;
+}
+
+.modal .modal-header .modal-action,
+.modal .modal-header .modal-title {
+  flex: 1;
+}
+
+.modal .modal-header .modal-action {
+  align-self: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
-import ProjectsList from './../components/ProjectsList';
+import CreateProjectModal from './../../components/modals/CreateProjectModal';
 import {
   showCreateProjectModal,
   hideCreateProjectModal,
-} from './../actions/modals';
+} from './../../actions/modals';
 
-const mapStateToProps = ({modals, projects}) => ({
+const mapStateToProps = ({modals}) => ({
   modals,
-  projects,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,9 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const ProjectsListContainer = connect(
+const CreateProjectModalContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProjectsList);
+)(CreateProjectModal);
 
-export default ProjectsListContainer;
+export default CreateProjectModalContainer;
