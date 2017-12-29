@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import { loadState, saveState } from './localStorage';
 import reducers from './reducers';
 
@@ -13,7 +14,8 @@ export default () => {
 
   const store = createStore(
     reducers,
-    persistedState
+    persistedState,
+    applyMiddleware(thunk)
   );
 
   // Persist the state on window.onunload
