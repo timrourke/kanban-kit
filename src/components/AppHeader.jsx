@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import {
   PROJECTS_PATH_REGEX,
-  PROJECTS_CREATE_PATH_REGEX,
   BOARDS_PATH_REGEX,
-  BOARDS_CREATE_PATH_REGEX,
 } from './../utils/path-regexes';
 
 class AppHeader extends Component {
@@ -22,17 +20,6 @@ class AppHeader extends Component {
   }
 
   /**
-   * Test a string for matching against a '/projects/create' path
-   *
-   * @param {String} pathname
-   * @return {Boolean}
-   * @static
-   */
-  static pathMatchesProjectsCreate(pathname) {
-    return PROJECTS_CREATE_PATH_REGEX.test(pathname);
-  }
-
-  /**
    * Test a string for matching against a '/projects/:projectId/boards' or
    * '/projects/:projectId/boards/:boardId' path
    *
@@ -42,18 +29,6 @@ class AppHeader extends Component {
    */
   static pathMatchesBoards(pathname) {
     return BOARDS_PATH_REGEX.exec(pathname);
-  }
-
-  /**
-   * Test a string for matching against a '/projects/:projectId/boards/create'
-   * path
-   *
-   * @param {String} pathname
-   * @return {Boolean}
-   * @static
-   */
-  static pathMatchesBoardsCreate(pathname) {
-    return BOARDS_CREATE_PATH_REGEX.exec(pathname);
   }
 
   /**
@@ -134,8 +109,6 @@ class AppHeader extends Component {
       return (projectId) ?
         ` - ${this.getProjectTitleById(projectId)}: Boards`:
         ' - Projects';
-    } else if (AppHeader.pathMatchesProjectsCreate(pathname)) {
-      return ' - Create a project';
     }
 
     return '';
@@ -158,14 +131,6 @@ class AppHeader extends Component {
       return (boardId) ?
         ` - ${this.getProjectTitleById(projectId)}: ${this.getBoardTitleById(boardId)}`:
         ` - ${this.getProjectTitleById(projectId)}: Boards`;
-    }
-
-    matches = AppHeader.pathMatchesBoardsCreate(pathname);
-
-    if (matches) {
-      const projectId = matches[1];
-
-      return ` - ${this.getProjectTitleById(projectId)}: Create a board`;
     }
 
     return '';
