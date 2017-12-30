@@ -8,5 +8,7 @@ header > h6 {
 }
 
 main {
+  height: inherit;
+  overflow-y: scroll;
   padding: 0.5em;
 }
