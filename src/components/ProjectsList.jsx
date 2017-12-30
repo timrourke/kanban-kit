@@ -3,6 +3,28 @@ import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
 import qs from 'query-string';
 
+/**
+ * Hide the create project modal
+ */
+export const hideCreateProjectModal = function hideCreateProjectModal() {
+  const currentQueryParams = Object.assign({}, this.props.queryParams);
+
+  // Return early if the modal's query param isn't set
+  if (!('create' in currentQueryParams)) {
+    return;
+  }
+
+  delete currentQueryParams.create;
+
+  const encodedQueryParams = qs.stringify(
+    currentQueryParams,
+    {arrayFormat: 'bracket'}
+  );
+
+  this.props.hideCreateProjectModal();
+  this.props.history.push(`/projects?${encodedQueryParams}`);
+}
+
 class ProjectsList extends Component {
   /**
    * Constructor.
@@ -13,11 +35,31 @@ class ProjectsList extends Component {
   constructor({queryParams}) {
     super(...arguments);
 
+    this.state = {
+      queryStringWithCreate: `?${this.getQueryStringWithCreate()}`,
+    };
+
+    this.hideCreateProjectModal = hideCreateProjectModal.bind(this);
+
     if (this.shouldShowCreateProjectModal(queryParams)) {
       this.props.showCreateProjectModal();
     } else {
       this.hideCreateProjectModal();
     }
+  }
+
+  /**
+   * Get a string of query params with `create=1` added
+   *
+   * @return {String}
+   */
+  getQueryStringWithCreate() {
+    const { queryParams } = this.props;
+    const queryParamsWithCreate = Object.assign({}, queryParams, {
+      create: 1,
+    });
+
+    return qs.stringify(queryParamsWithCreate, {arrayFormat: 'bracket'});
   }
 
   /**
@@ -33,28 +75,6 @@ class ProjectsList extends Component {
     );
   }
 
-  /**
-   * Hide the create project modal
-   */
-  hideCreateProjectModal() {
-    const currentQueryParams = Object.assign({}, this.props.queryParams);
-
-    // Return early if the modal's query param isn't set
-    if (!('create' in currentQueryParams)) {
-      return;
-    }
-
-    delete currentQueryParams.create;
-
-    const encodedQueryParams = qs.stringify(
-      currentQueryParams,
-      {arrayFormat: 'bracket'}
-    );
-
-    this.props.hideCreateProjectModal();
-    this.props.history.push(`/projects?${encodedQueryParams}`);
-  }
-
   render() {
     return (
       <main className="ProjectsList">
@@ -64,7 +84,7 @@ class ProjectsList extends Component {
             <div className="table-action">
               <Link className="button" to={{
                 pathname: '/projects',
-                search: '?create=1'
+                search: this.state.queryStringWithCreate,
               }}>Create a new Project</Link>
             </div>
           </header>

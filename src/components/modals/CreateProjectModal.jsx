@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import { hideCreateProjectModal } from './../ProjectsList';
 import withRouterAndQueryParsing from './../withRouterAndQueryParsing';
 
 class CreateProjectModal extends Component {
+  /**
+   * Constructor.
+   *
+   * @param {Object} props
+   */
   constructor(props) {
     super(props);
 
@@ -9,6 +15,7 @@ class CreateProjectModal extends Component {
       newProjectTitle: '',
     };
 
+    this.hideCreateProjectModal = hideCreateProjectModal.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
@@ -53,8 +60,7 @@ class CreateProjectModal extends Component {
     });
 
     // TODO: use redux-thunk to transition to new project in create action
-    this.props.hideCreateProjectModal();
-    this.props.history.push('/projects');
+    this.hideCreateProjectModal();
   }
 
   render() {
@@ -65,16 +71,17 @@ class CreateProjectModal extends Component {
           <div className="modal-action">
             <button
               className="button"
-              onClick={this.props.hideCreateProjectModal}
+              onClick={this.hideCreateProjectModal}
             >X</button>
           </div>
         </header>
         <main className="modal-body">
+          <p>Create a new project.</p>
           <form action="" onSubmit={this.handleOnSubmit}>
             <input
               className="CreateProjectModal-title-input"
               name="CreateProjectModal-title-input"
-              placeholder="New project title"
+              placeholder="New project's title"
               type="text"
               value={this.state.newProjectTitle}
               onChange={this.handleOnChange}
@@ -84,7 +91,7 @@ class CreateProjectModal extends Component {
         <footer className="modal-footer">
           <button
             className="button modal-cancel"
-            onClick={this.props.hideCreateProjectModal}
+            onClick={this.hideCreateProjectModal}
           >Cancel</button>
           <button
             className="button modal-ok"
