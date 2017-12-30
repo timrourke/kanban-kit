@@ -29,6 +29,7 @@ input[type='button'],
 input[type='submit'],
 input[type='reset'] {
   -webkit-appearance: none;
+	font-family: 'Source Sans Pro', Helvetica, sans-serif;
   font-size: 1em;
   height: 2em;
 
@@ -41,6 +42,14 @@ input[type='reset'] {
   }
 }
 
-input {
+input[type='password'],
+input[type='search'],
+input[type='text'] {
+  padding: 0 0.5em;
+  width: 100%;
+}
+
+input,
+textarea {
   border: 1px solid #ccc;
 }
