@@ -5,6 +5,25 @@ import { parseDate } from './../utils/date';
 
 class BoardsList extends Component {
   /**
+   * Constructor.
+   *
+   * @param {Object} props
+   */
+  constructor(props) {
+    super(props);
+
+    const projectId = props.match.params.projectId;
+    const boardsLinkPrefix = `/projects/${projectId}/boards`;
+    const createBoardsLink = `${boardsLinkPrefix}/create`;
+
+    this.state = {
+      projectId,
+      boardsLinkPrefix,
+      createBoardsLink,
+    };
+  }
+
+  /**
    * Get the boards that belong to a given project by project's ID
    *
    * @param {String} projectId
@@ -15,10 +34,6 @@ class BoardsList extends Component {
   }
 
   render() {
-    const projectId = this.props.match.params.projectId;
-    const boardsLinkPrefix = `/projects/${projectId}/boards`;
-    const createBoardsLink = `${boardsLinkPrefix}/create`;
-
     return (
       <main className='BoardsList'>
         <div className='table'>
@@ -27,7 +42,7 @@ class BoardsList extends Component {
             <div className='table-action'>
               <Link
                 className='button'
-                to={createBoardsLink}
+                to={this.state.createBoardsLink}
               >
                 Create a new Board
               </Link>
@@ -42,8 +57,8 @@ class BoardsList extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.getBoardsForProject(projectId).map((board) => {
-                const boardLink = `${boardsLinkPrefix}/${board.id}`;
+              {this.getBoardsForProject(this.state.projectId).map((board) => {
+                const boardLink = `${this.state.boardsLinkPrefix}/${board.id}`;
 
                 return (
                   <tr key={board.id}>
