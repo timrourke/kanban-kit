@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import Modals from './../components/Modals';
 import {
+  showCreateBoardModal,
+  hideCreateBoardModal,
   showCreateProjectModal,
   hideCreateProjectModal,
 } from './../actions/modals';
@@ -10,6 +12,12 @@ const mapStateToProps = ({modals}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  showCreateBoardModal() {
+    dispatch(showCreateBoardModal());
+  },
+  hideCreateBoardModal() {
+    dispatch(hideCreateBoardModal());
+  },
   showCreateProjectModal() {
     dispatch(showCreateProjectModal());
   },

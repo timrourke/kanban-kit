@@ -1,6 +1,8 @@
 import {
   SHOW_CREATE_PROJECT_MODAL,
   HIDE_CREATE_PROJECT_MODAL,
+  SHOW_CREATE_BOARD_MODAL,
+  HIDE_CREATE_BOARD_MODAL,
 } from './../actions/modals';
 
 const initialState = {
@@ -10,6 +12,16 @@ const initialState = {
 
 const modals = (state = initialState, action) => {
   switch (action.type) {
+    case SHOW_CREATE_BOARD_MODAL:
+      return Object.assign({}, state, {
+        isShowingModal: true,
+        modalShowing: SHOW_CREATE_BOARD_MODAL,
+      });
+    case HIDE_CREATE_BOARD_MODAL:
+      return Object.assign({}, state, {
+        isShowingModal: false,
+        modalShowing: null,
+      });
     case SHOW_CREATE_PROJECT_MODAL:
       return Object.assign({}, state, {
         isShowingModal: true,

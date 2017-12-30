@@ -12,4 +12,16 @@ describe('actions/modals', () => {
 
     expect(action.type).toBe(actions.HIDE_CREATE_PROJECT_MODAL);
   });
+
+  it('should create action for "showCreateBoardModal"', () => {
+    const action = actions.showCreateBoardModal();
+
+    expect(action.type).toBe(actions.SHOW_CREATE_BOARD_MODAL);
+  });
+
+  it('should create action for "hideCreateBoardModal"', () => {
+    const action = actions.hideCreateBoardModal();
+
+    expect(action.type).toBe(actions.HIDE_CREATE_BOARD_MODAL);
+  });
 });
