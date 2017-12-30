@@ -25,7 +25,7 @@ class Board extends Component {
    * Calculate the height of the scroll container and update the component state
    */
   calculateHeight() {
-    if (!('scrollWrapper' in this)) {
+    if (!('scrollWrapper' in this) || !this.scrollWrapper) {
       return;
     }
 
