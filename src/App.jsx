@@ -12,8 +12,6 @@ import configureStore from './configureStore';
 
 const store = configureStore();
 
-console.log('store', store);
-
 class App extends Component {
   render() {
     return (

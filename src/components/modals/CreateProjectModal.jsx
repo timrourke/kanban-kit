@@ -18,6 +18,15 @@ class CreateProjectModal extends Component {
     this.hideCreateProjectModal = hideCreateProjectModal.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+
+    // Bind router event listener
+    this.removeRouterEventListener = props.history.listen(() => {
+      this.hideCreateProjectModal(false);
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeRouterEventListener();
   }
 
   /**

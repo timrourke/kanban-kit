@@ -6,8 +6,19 @@ import qs from 'query-string';
 
 /**
  * Hide the create board modal
+ *
+ * @param {Boolean} redirectToBoards Whether to redirect to the boards page
  */
-export const hideCreateBoardModal = function hideCreateBoardModal() {
+export const hideCreateBoardModal = function hideCreateBoardModal(
+  redirectToBoardsPage = true
+) {
+  this.props.hideCreateBoardModal();
+
+  // Return early if no intention to redirect to boards page
+  if (!redirectToBoardsPage) {
+    return;
+  }
+
   const currentQueryParams = Object.assign({}, this.props.queryParams);
 
   // Return early if the modal's query param isn't set
@@ -22,7 +33,6 @@ export const hideCreateBoardModal = function hideCreateBoardModal() {
     {arrayFormat: 'bracket'}
   );
 
-  this.props.hideCreateBoardModal();
   this.props.history.push(`${this.state.boardsLinkPrefix}?${encodedQueryParams}`);
 }
 
@@ -37,13 +47,20 @@ class BoardsList extends Component {
 
     const projectId = props.match.params.projectId;
     const boardsLinkPrefix = `/projects/${projectId}/boards`;
-    const createBoardsLink = `${boardsLinkPrefix}/create`;
 
     this.state = {
       projectId,
       boardsLinkPrefix,
-      createBoardsLink,
+      queryStringWithCreateBoard: `?${this.getQueryStringWithCreateBoard()}`,
     };
+
+    this.hideCreateBoardModal = hideCreateBoardModal.bind(this);
+
+    if (this.shouldShowCreateBoardModal(this.props.queryParams)) {
+      this.props.showCreateBoardModal();
+    } else {
+      this.hideCreateBoardModal();
+    }
   }
 
   /**
@@ -92,10 +109,10 @@ class BoardsList extends Component {
             <div className='table-action'>
               <Link
                 className='button'
-                to={this.state.createBoardsLink}
-              >
-                Create a new Board
-              </Link>
+                to={{
+                  pathname: this.state.boardsLinkPrefix,
+                  search: this.state.queryStringWithCreateBoard,
+                }}>Create a new Board</Link>
             </div>
           </header>
           <table>

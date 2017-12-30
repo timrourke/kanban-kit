@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { hideCreateBoardModal } from './../BoardsList';
 import withRouterAndQueryParsing from './../withRouterAndQueryParsing';
+import {
+  BOARDS_PATH_REGEX
+} from './../../utils/path-regexes';
 
 class CreateBoardModal extends Component {
   /**
@@ -11,14 +14,39 @@ class CreateBoardModal extends Component {
   constructor(props) {
     super(props);
 
+    const projectId = this.getProjectId();
+    const boardsLinkPrefix = `/projects/${projectId}/boards`;
+
     this.state = {
+      boardsLinkPrefix,
       newBoardTitle: '',
-      projectId: props.match.params.projectId,
+      projectId,
     };
 
     this.hideCreateBoardModal = hideCreateBoardModal.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+
+    // Bind router event listener
+    this.removeRouterEventListener = props.history.listen(() => {
+      this.hideCreateBoardModal(false);
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeRouterEventListener();
+  }
+
+  /**
+   * Get the project ID from the current location
+   *
+   * @return {String}
+   */
+  getProjectId() {
+    const matches = BOARDS_PATH_REGEX
+      .exec(this.props.history.location.pathname);
+
+    return matches[1];
   }
 
   /**

@@ -6,8 +6,20 @@ import qs from 'query-string';
 
 /**
  * Hide the create project modal
+ *
+ * @param {Boolean} redirectToProjectsPage Whether to redirect to the projects
+ *     page
  */
-export const hideCreateProjectModal = function hideCreateProjectModal() {
+export const hideCreateProjectModal = function hideCreateProjectModal(
+  redirectToProjectsPage = true
+) {
+  this.props.hideCreateProjectModal();
+
+  // Return early if no intention to redirect to projects page
+  if (!redirectToProjectsPage) {
+    return;
+  }
+
   const currentQueryParams = Object.assign({}, this.props.queryParams);
 
   // Return early if the modal's query param isn't set
@@ -22,7 +34,6 @@ export const hideCreateProjectModal = function hideCreateProjectModal() {
     {arrayFormat: 'bracket'}
   );
 
-  this.props.hideCreateProjectModal();
   this.props.history.push(`/projects?${encodedQueryParams}`);
 }
 
