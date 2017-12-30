@@ -13,6 +13,7 @@ class CreateBoardModal extends Component {
 
     this.state = {
       newBoardTitle: '',
+      projectId: props.match.params.projectId,
     };
 
     this.hideCreateBoardModal = hideCreateBoardModal.bind(this);
@@ -30,9 +31,9 @@ class CreateBoardModal extends Component {
   handleOnChange(event) {
     event.preventDefault();
 
-    this.setState({
+    this.setState(Object.assign({}, this.state, {
       newBoardTitle: event.target.value,
-    });
+    }));
   }
 
   /**
@@ -53,11 +54,11 @@ class CreateBoardModal extends Component {
       return;
     }
 
-    this.props.createBoard(newBoardTitle);
+    this.props.createBoard(this.state.projectId, newBoardTitle);
 
-    this.setState({
+    this.setState(Object.assign({}, this.state, {
       newBoardTitle: '',
-    });
+    }));
 
     // TODO: use redux-thunk to transition to new board in create action
     this.hideCreateBoardModal();
