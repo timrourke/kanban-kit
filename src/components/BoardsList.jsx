@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
 import { parseDate } from './../utils/date';
+import qs from 'query-string';
 
+/**
+ * Hide the create board modal
+ */
 export const hideCreateBoardModal = function hideCreateBoardModal() {
   const currentQueryParams = Object.assign({}, this.props.queryParams);
 
   // Return early if the modal's query param isn't set
-  if (!('create' in currentQueryParams)) {
+  if (!('createBoard' in currentQueryParams)) {
     return;
   }
 
-  delete currentQueryParams.create;
+  delete currentQueryParams.createBoard;
 
   const encodedQueryParams = qs.stringify(
     currentQueryParams,
@@ -40,6 +44,33 @@ class BoardsList extends Component {
       boardsLinkPrefix,
       createBoardsLink,
     };
+  }
+
+  /**
+   * Get a string of query params with `createBoard=1` added
+   *
+   * @return {String}
+   */
+  getQueryStringWithCreateBoard() {
+    const { queryParams } = this.props;
+    const queryParamsWithCreateBoard = Object.assign({}, queryParams, {
+      createBoard: 1,
+    });
+
+    return qs.stringify(queryParamsWithCreateBoard, {arrayFormat: 'bracket'});
+  }
+
+  /**
+   * Whether to show the create board modal
+   *
+   * @param {Object} queryParams
+   * @return {Boolean}
+   */
+  shouldShowCreateBoardModal(queryParams = {}) {
+    return !!(
+      'createBoard' in queryParams &&
+      parseInt(queryParams.createBoard, 10) === 1
+    );
   }
 
   /**
