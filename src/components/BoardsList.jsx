@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
+import { parseDate } from './../utils/date';
 
 class BoardsList extends Component {
+  /**
+   * Get the boards that belong to a given project by project's ID
+   *
+   * @param {String} projectId
+   * @return {Object[]}
+   */
   getBoardsForProject(projectId) {
     return this.props.boards.filter((board) => board.project === projectId);
   }
@@ -31,6 +38,7 @@ class BoardsList extends Component {
               <tr>
                 <th>Title</th>
                 <th>Created At</th>
+                <th>Updated At</th>
               </tr>
             </thead>
             <tbody>
@@ -43,7 +51,10 @@ class BoardsList extends Component {
                       <Link to={boardLink}>{board.title}</Link>
                     </td>
                     <td>
-                      <Link to={boardLink}>{board.createdAt}</Link>
+                      <Link to={boardLink}>{parseDate(board.createdAt)}</Link>
+                    </td>
+                    <td>
+                      <Link to={boardLink}>{parseDate(board.updatedAt)}</Link>
                     </td>
                   </tr>
                 );

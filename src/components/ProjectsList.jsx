@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
+import { parseDate } from './../utils/date';
 import qs from 'query-string';
 
 /**
@@ -93,6 +94,7 @@ class ProjectsList extends Component {
               <tr>
                 <th>Title</th>
                 <th>Created At</th>
+                <th>Updated At</th>
               </tr>
             </thead>
             <tbody>
@@ -105,7 +107,10 @@ class ProjectsList extends Component {
                       <Link to={projectLink}>{project.title}</Link>
                     </td>
                     <td>
-                      <Link to={projectLink}>{project.createdAt.toLocaleString()}</Link>
+                      <Link to={projectLink}>{parseDate(project.createdAt)}</Link>
+                    </td>
+                    <td>
+                      <Link to={projectLink}>{parseDate(project.updatedAt)}</Link>
                     </td>
                   </tr>
                 );
