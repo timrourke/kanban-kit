@@ -3,6 +3,25 @@ import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
 import { parseDate } from './../utils/date';
 
+export const hideCreateBoardModal = function hideCreateBoardModal() {
+  const currentQueryParams = Object.assign({}, this.props.queryParams);
+
+  // Return early if the modal's query param isn't set
+  if (!('create' in currentQueryParams)) {
+    return;
+  }
+
+  delete currentQueryParams.create;
+
+  const encodedQueryParams = qs.stringify(
+    currentQueryParams,
+    {arrayFormat: 'bracket'}
+  );
+
+  this.props.hideCreateBoardModal();
+  this.props.history.push(`${this.state.boardsLinkPrefix}?${encodedQueryParams}`);
+}
+
 class BoardsList extends Component {
   /**
    * Constructor.
