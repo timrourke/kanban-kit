@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {
   SHOW_CREATE_BOARD_MODAL,
   SHOW_CREATE_PROJECT_MODAL,
-} from './../actions/modals';
-import CreateProjectModalContainer from './../containers/modals/CreateProjectModalContainer';
-import CreateBoardModalContainer from './../containers/modals/CreateBoardModalContainer';
+} from './../../actions/modals';
+import CreateProjectModalContainer from './../../containers/Modals/CreateProjectModalContainer';
+import CreateBoardModalContainer from './../../containers/Modals/CreateBoardModalContainer';
 
 class Modals extends Component {
   render() {
@@ -15,7 +15,7 @@ class Modals extends Component {
         ModalComponent = <CreateBoardModalContainer />;
         break;
       case SHOW_CREATE_PROJECT_MODAL:
-        ModalComponent = <CreateProjectModalContainer  />;
+        ModalComponent = <CreateProjectModalContainer />;
         break;
       default:
         ModalComponent = '';

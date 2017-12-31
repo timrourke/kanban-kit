@@ -8,6 +8,7 @@ import {
 const initialState = {
   isShowingModal: false,
   modalShowing: null,
+  modalState: {},
 };
 
 const modals = (state = initialState, action) => {
@@ -16,21 +17,25 @@ const modals = (state = initialState, action) => {
       return Object.assign({}, state, {
         isShowingModal: true,
         modalShowing: SHOW_CREATE_BOARD_MODAL,
+        modalState: {...action.payload},
       });
     case HIDE_CREATE_BOARD_MODAL:
       return Object.assign({}, state, {
         isShowingModal: false,
         modalShowing: null,
+        modalState: {},
       });
     case SHOW_CREATE_PROJECT_MODAL:
       return Object.assign({}, state, {
         isShowingModal: true,
         modalShowing: SHOW_CREATE_PROJECT_MODAL,
+        modalState: {},
       });
     case HIDE_CREATE_PROJECT_MODAL:
       return Object.assign({}, state, {
         isShowingModal: false,
         modalShowing: null,
+        modalState: {},
       });
     default:
       return state;

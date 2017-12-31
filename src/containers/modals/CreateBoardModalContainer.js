@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateBoardModal from './../../components/modals/CreateBoardModal';
+import CreateBoardModal from './../../components/Modals/CreateBoardModal';
 import {
   showCreateBoardModal,
   hideCreateBoardModal,
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
   createBoard(project, title) {
     dispatch(createBoard(project, title));
   },
-  showCreateBoardModal() {
-    dispatch(showCreateBoardModal());
+  showCreateBoardModal(projectId) {
+    dispatch(showCreateBoardModal(projectId));
   },
   hideCreateBoardModal() {
     dispatch(hideCreateBoardModal());

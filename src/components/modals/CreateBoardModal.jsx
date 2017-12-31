@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { hideCreateBoardModal } from './../BoardsList';
 import withRouterAndQueryParsing from './../withRouterAndQueryParsing';
-import {
-  BOARDS_PATH_REGEX
-} from './../../utils/path-regexes';
+import Modal from './../Modal';
+import ModalBody from './../Modal/ModalBody';
+import ModalFooter from './../Modal/ModalFooter';
+import ModalHeader from './../Modal/ModalHeader';
+
 
 class CreateBoardModal extends Component {
   /**
@@ -14,7 +16,7 @@ class CreateBoardModal extends Component {
   constructor(props) {
     super(props);
 
-    const projectId = this.getProjectId();
+    const projectId = props.modals.modalState.projectId;
     const boardsLinkPrefix = `/projects/${projectId}/boards`;
 
     this.state = {
@@ -35,18 +37,6 @@ class CreateBoardModal extends Component {
 
   componentWillUnmount() {
     this.removeRouterEventListener();
-  }
-
-  /**
-   * Get the project ID from the current location
-   *
-   * @return {String}
-   */
-  getProjectId() {
-    const matches = BOARDS_PATH_REGEX
-      .exec(this.props.history.location.pathname);
-
-    return matches[1];
   }
 
   /**
@@ -94,17 +84,14 @@ class CreateBoardModal extends Component {
 
   render() {
     return (
-      <div className="modal">
-        <header className="modal-header">
-          <h3 className="modal-title">Create Board</h3>
-          <div className="modal-action">
-            <button
-              className="button"
-              onClick={this.hideCreateBoardModal}
-            >X</button>
-          </div>
-        </header>
-        <main className="modal-body">
+      <Modal>
+        <ModalHeader title="Create Board">
+          <button
+            className="button"
+            onClick={this.hideCreateBoardModal}
+          >X</button>
+        </ModalHeader>
+        <ModalBody>
           <p>Create a new board.</p>
           <form action="" onSubmit={this.handleOnSubmit}>
             <input
@@ -116,8 +103,8 @@ class CreateBoardModal extends Component {
               onChange={this.handleOnChange}
               />
           </form>
-        </main>
-        <footer className="modal-footer">
+        </ModalBody>
+        <ModalFooter>
           <button
             className="button modal-cancel"
             onClick={this.hideCreateBoardModal}
@@ -126,8 +113,8 @@ class CreateBoardModal extends Component {
             className="button modal-ok"
             onClick={this.handleOnSubmit}
           >OK</button>
-        </footer>
-      </div>
+        </ModalFooter>
+      </Modal>
     );
   }
 }

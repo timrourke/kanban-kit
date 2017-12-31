@@ -18,6 +18,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
   });
 
@@ -27,6 +28,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
 
     store.dispatch(showCreateProjectModal());
@@ -34,6 +36,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: true,
       modalShowing: SHOW_CREATE_PROJECT_MODAL,
+      modalState: {},
     });
   });
 
@@ -43,6 +46,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
 
     store.dispatch(showCreateProjectModal());
@@ -50,6 +54,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: true,
       modalShowing: SHOW_CREATE_PROJECT_MODAL,
+      modalState: {},
     });
 
     store.dispatch(hideCreateProjectModal());
@@ -57,6 +62,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
   });
 
@@ -66,13 +72,17 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
 
-    store.dispatch(showCreateBoardModal());
+    store.dispatch(showCreateBoardModal('some-project-id'));
 
     expect(store.getState()).toMatchObject({
       isShowingModal: true,
       modalShowing: SHOW_CREATE_BOARD_MODAL,
+      modalState: {
+        projectId: 'some-project-id',
+      },
     });
   });
 
@@ -82,6 +92,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
 
     store.dispatch(showCreateBoardModal());
@@ -89,6 +100,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: true,
       modalShowing: SHOW_CREATE_BOARD_MODAL,
+      modalState: {},
     });
 
     store.dispatch(hideCreateBoardModal());
@@ -96,6 +108,7 @@ describe('reducers/modals', () => {
     expect(store.getState()).toMatchObject({
       isShowingModal: false,
       modalShowing: null,
+      modalState: {},
     });
   });
 });

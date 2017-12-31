@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { hideCreateProjectModal } from './../ProjectsList';
 import withRouterAndQueryParsing from './../withRouterAndQueryParsing';
+import Modal from './../Modal';
+import ModalBody from './../Modal/ModalBody';
+import ModalFooter from './../Modal/ModalFooter';
+import ModalHeader from './../Modal/ModalHeader';
 
 class CreateProjectModal extends Component {
   /**
@@ -74,17 +78,14 @@ class CreateProjectModal extends Component {
 
   render() {
     return (
-      <div className="modal">
-        <header className="modal-header">
-          <h3 className="modal-title">Create Project</h3>
-          <div className="modal-action">
-            <button
-              className="button"
-              onClick={this.hideCreateProjectModal}
-            >X</button>
-          </div>
-        </header>
-        <main className="modal-body">
+      <Modal>
+        <ModalHeader title="Create Project">
+          <button
+            className="button"
+            onClick={this.hideCreateProjectModal}
+          >X</button>
+        </ModalHeader>
+        <ModalBody>
           <p>Create a new project.</p>
           <form action="" onSubmit={this.handleOnSubmit}>
             <input
@@ -96,8 +97,8 @@ class CreateProjectModal extends Component {
               onChange={this.handleOnChange}
               />
           </form>
-        </main>
-        <footer className="modal-footer">
+        </ModalBody>
+        <ModalFooter>
           <button
             className="button modal-cancel"
             onClick={this.hideCreateProjectModal}
@@ -106,8 +107,8 @@ class CreateProjectModal extends Component {
             className="button modal-ok"
             onClick={this.handleOnSubmit}
           >OK</button>
-        </footer>
-      </div>
+        </ModalFooter>
+      </Modal>
     );
   }
 }

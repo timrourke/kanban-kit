@@ -10,8 +10,8 @@ const mapStateToProps = ({boards}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  showCreateBoardModal() {
-    dispatch(showCreateBoardModal());
+  showCreateBoardModal(projectId) {
+    dispatch(showCreateBoardModal(projectId));
   },
   hideCreateBoardModal() {
     dispatch(hideCreateBoardModal());

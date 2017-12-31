@@ -14,8 +14,9 @@ export const hideCreateProjectModal = () => ({
 export const SHOW_CREATE_BOARD_MODAL   = Symbol('SHOW_CREATE_BOARD_MODAL');
 export const HIDE_CREATE_BOARD_MODAL   = Symbol('HIDE_CREATE_BOARD_MODAL');
 
-export const showCreateBoardModal = () => ({
+export const showCreateBoardModal = (projectId) => ({
   type: SHOW_CREATE_BOARD_MODAL,
+  payload: {projectId},
 });
 
 export const hideCreateBoardModal = () => ({

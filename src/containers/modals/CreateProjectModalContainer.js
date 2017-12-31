@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateProjectModal from './../../components/modals/CreateProjectModal';
+import CreateProjectModal from './../../components/Modals/CreateProjectModal';
 import {
   showCreateProjectModal,
   hideCreateProjectModal,

@@ -57,7 +57,7 @@ class BoardsList extends Component {
     this.hideCreateBoardModal = hideCreateBoardModal.bind(this);
 
     if (this.shouldShowCreateBoardModal(this.props.queryParams)) {
-      this.props.showCreateBoardModal();
+      this.props.showCreateBoardModal(projectId);
     } else {
       this.hideCreateBoardModal();
     }
