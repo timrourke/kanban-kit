@@ -6,7 +6,7 @@ class Row extends Component {
     return (
       <section className="Row">
         <header className="Row-header">
-          <h3 className="Row-title">Design: Board layout</h3>
+          <h3 className="Row-title">{this.props.row.title}</h3>
         </header>
         <Column />
       </section>

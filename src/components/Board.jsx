@@ -12,13 +12,20 @@ class Board extends Component {
   constructor(props) {
     super(props);
 
+    const boardId = props.match.params.boardId;
+
     // Set the initial state
     this.state = {
+      boardId,
       // Height of the scroll container
       scrollContainerHeight: 0,
     };
 
+    //console.log(this.getColumnsForBoard(), this.getRowsForBoard());
+
     this.calculateHeight = this.calculateHeight.bind(this);
+    this.getColumnsForBoard = this.getColumnsForBoard.bind(this);
+    this.getRowsForBoard = this.getRowsForBoard.bind(this);
   }
 
   /**
@@ -32,9 +39,9 @@ class Board extends Component {
     const windowHeight = window.innerHeight;
     const scrollContainerHeight = windowHeight - this.scrollWrapper.offsetTop;
 
-    this.setState({
+    this.setState(Object.assign({}, this.state, {
       scrollContainerHeight: scrollContainerHeight,
-    });
+    }));
   }
 
   /**
@@ -42,6 +49,18 @@ class Board extends Component {
    */
   debounceCalculateHeight() {
     return debounce(this.calculateHeight, 200, {});
+  }
+
+  getColumnsForBoard() {
+    return this.props.columns.filter((column) => {
+      return column.board === this.state.boardId;
+    });
+  }
+
+  getRowsForBoard() {
+    return this.props.rows.filter((row) => {
+      return row.board === this.state.boardId;
+    });
   }
 
   /**
@@ -71,12 +90,16 @@ class Board extends Component {
           ref={(el) => { this.scrollWrapper = el; }}
           style={{ height: `${this.state.scrollContainerHeight}px`}}
         >
-          <li>
-            <Row />
-          </li>
-          <li>
-            <Row />
-          </li>
+          {this.getRowsForBoard().map((row) => {
+            return (
+              <li key={row.id}>
+                <Row
+                  columns={this.getColumnsForBoard()}
+                  row={row}
+                />
+              </li>
+            );
+          })}
         </ul>
       </main>
     );
