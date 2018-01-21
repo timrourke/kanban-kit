@@ -19,7 +19,7 @@ it('should create a column', () => {
 
   expect(store.getState()).toMatchObject([]);
 
-  store.dispatch(createColumn('some-board-id', 'A cool new column'));
+  store.dispatch(createColumn('some-board-id', 67, 'A cool new column'));
 
   expect(store.getState()).toHaveLength(1);
 
@@ -27,6 +27,7 @@ it('should create a column', () => {
 
   expect(newColumn.id).toBeDefined();
   expect(newColumn.board).toBe('some-board-id');
+  expect(newColumn.order).toBe(67);
   expect(newColumn.title).toBe('A cool new column');
   expect(newColumn.createdAt).toBeInstanceOf(Date);
   expect(newColumn.updatedAt).toBe(null);
