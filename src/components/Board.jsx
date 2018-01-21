@@ -21,8 +21,6 @@ class Board extends Component {
       scrollContainerHeight: 0,
     };
 
-    //console.log(this.getColumnsForBoard(), this.getRowsForBoard());
-
     this.calculateHeight = this.calculateHeight.bind(this);
     this.getColumnsForBoard = this.getColumnsForBoard.bind(this);
     this.getRowsForBoard = this.getRowsForBoard.bind(this);
