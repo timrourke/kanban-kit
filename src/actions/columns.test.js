@@ -2,11 +2,12 @@ import actions from './columns';
 
 describe('actions/columns', () => {
   it('should create action for "createColumn"', () => {
-    const action = actions.createColumn('some-board-id', 'foo');
+    const action = actions.createColumn('some-board-id', 3, 'foo');
 
     expect(action.type).toBe(actions.CREATE_COLUMN);
     expect(action.payload.id).toBeDefined();
     expect(action.payload.board).toBe('some-board-id');
+    expect(action.payload.order).toBe(3);
     expect(action.payload.title).toBe('foo');
   });
 

@@ -9,14 +9,16 @@ export const DELETE_COLUMN  = Symbol('DELETE_COLUMN');
  * Create a new column
  *
  * @param {String} board
+ * @param {Number} order
  * @param {String} title
  * @return {Object}
  */
-export const createColumn = (board, title) => ({
+export const createColumn = (board, order, title) => ({
   type: CREATE_COLUMN,
   payload: {
     id: v4(),
     board,
+    order,
     title,
   },
 });
