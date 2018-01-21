@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Card from './Card';
 
-class Column extends Component {
+class Columns extends Component {
   render() {
     return (
-      <div className="Column-wrap">
+      <div className="Columns-wrap">
         <ul className="Column">
           <li>
             <Card />
@@ -50,4 +50,4 @@ class Column extends Component {
   }
 }
 
-export default Column;
+export default Columns;

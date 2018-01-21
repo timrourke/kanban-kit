@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Column from './Column';
+import Columns from './Columns';
 
 class Row extends Component {
   render() {
@@ -8,7 +8,7 @@ class Row extends Component {
         <header className="Row-header">
           <h3 className="Row-title">{this.props.row.title}</h3>
         </header>
-        <Column />
+        <Columns columns={this.props.columns} />
       </section>
     );
   }
