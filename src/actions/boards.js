@@ -38,7 +38,7 @@ export const createBoardWithColumnsAndRow = (project, title, columnTitles) => (d
   const newBoard = getState()
     .boards
     .reduce((acc, current) => {
-      return (current.id === createBoardAction.id && current) || acc;
+      return (current.id === createBoardAction.payload.id && current) || acc;
     });
 
   columnTitles.forEach((columnTitle, index) => {
