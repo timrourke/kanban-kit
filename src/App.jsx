@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import AppHeaderContainer     from './containers/AppHeaderContainer';
-import Board                  from './components/Board';
+import BoardContainer         from './containers/BoardContainer';
 import BoardsListContainer    from './containers/BoardsListContainer';
 import ModalsContainer        from './containers/ModalsContainer';
 import ProjectsListContainer  from './containers/ProjectsListContainer';
@@ -23,7 +23,7 @@ class App extends Component {
               <Route exact path="/projects" component={ProjectsListContainer} />
               <Route exact path="/projects/:projectId" component={BoardsListContainer} />
               <Route exact path="/projects/:projectId/boards" component={BoardsListContainer} />
-              <Route exact path="/projects/:projectId/boards/:boardId" component={Board} />
+              <Route exact path="/projects/:projectId/boards/:boardId" component={BoardContainer} />
             </Switch>
             <ModalsContainer />
           </div>
