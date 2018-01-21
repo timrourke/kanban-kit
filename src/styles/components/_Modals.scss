@@ -1,3 +1,5 @@
+@import 'Modals/CreateBoardModal';
+
 .modals .modal-wrapper {
   height: 100%;
   left: 0;
@@ -22,9 +24,15 @@
 .modals .modal {
   background: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   left: 50%;
+  max-height: 80vh;
   min-width: 300px;
   max-width: 600px;
+  overflow: hidden;
+  padding-bottom: 3.9375em;
   position: absolute;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -45,12 +53,25 @@
 
 .modal .modal-header,
 .modal .modal-footer {
+  background: #eee;
   display: flex;
 }
 
 .modal .modal-header {
   align-items: center;
-  background: #ccc;
+  height: 3.9375em;
+  position: absolute;
+  width: 100%;
+}
+
+.modal .modal-body {
+  margin-top: 3.9375em;
+}
+
+.modal .modal-footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .modal .modal-header .modal-action,
