@@ -53,3 +53,8 @@ input,
 textarea {
   border: 1px solid #ccc;
 }
+
+form .form-row {
+  display: flex;
+  margin-bottom: 1em;
+}
