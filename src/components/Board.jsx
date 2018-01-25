@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { debounce } from 'lodash';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
-import Row from './Row';
+import RowContainer from './../containers/RowContainer';
 
 class Board extends Component {
   /**
@@ -91,7 +91,7 @@ class Board extends Component {
           {this.getRowsForBoard().map((row) => {
             return (
               <li key={row.id}>
-                <Row
+                <RowContainer
                   columns={this.getColumnsForBoard()}
                   row={row}
                 />
