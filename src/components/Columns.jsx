@@ -2,22 +2,32 @@ import React, { Component } from 'react';
 import Card from './Card';
 
 class Columns extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnClickAddCard = this.handleOnClickAddCard.bind(this);
+  }
+
+  handleOnClickAddCard(columnId) {
+    this.props.createCard(columnId, this.props.row.id, 'New Card');
+  }
+
   render() {
     return (
       <div className="Columns-wrap">
         {this.props.columns.map((column, index) => {
-          const numCardsToRender = Math.floor(Math.random() * 10) + 1;
-          const cards = [];
-
-          for (let i = 0; i < numCardsToRender; i++) {
-            cards.push(
+          const cards = this.props.cards.filter((card) => {
+            return card.column === column.id &&
+              card.row === this.props.row.id;
+          }).map((card) => {
+            return (
               <li
-                key={`column-${column.id}-column-${index+1}-card-${i+1}`}
+                key={card.id}
               >
-                <Card />
+                <Card card={card} />
               </li>
             );
-          }
+          });
 
           return (
             <ul
@@ -25,6 +35,16 @@ class Columns extends Component {
               key={`column-${column.id}-column-${index+1}`}
             >
               {cards}
+              <li>
+                <article className="Card Card-add-card">
+                  <p className="Card-title">
+                    <button
+                      className="add-card"
+                      onClick={() => this.handleOnClickAddCard(column.id)}
+                    >Add New Card</button>
+                  </p>
+                </article>
+              </li>
             </ul>
           );
         })}

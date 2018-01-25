@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Columns from './Columns';
+import ColumnsContainer from './../containers/ColumnsContainer';
 import ColumnsHeader from './ColumnsHeader';
 
 /**
@@ -140,7 +140,11 @@ class Row extends Component {
           {title}
           <ColumnsHeader columns={this.props.columns} />
         </header>
-        <Columns columns={this.props.columns} />
+        <ColumnsContainer
+          cards={this.props.cards}
+          columns={this.props.columns}
+          row={this.props.row}
+        />
       </section>
     );
   }

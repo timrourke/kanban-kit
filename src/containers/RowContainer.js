@@ -4,8 +4,9 @@ import {
   updateRow,
 } from './../actions/rows';
 
-const mapStateToProps = ({boards, rows}) => ({
+const mapStateToProps = ({boards, cards, rows}) => ({
   boards,
+  cards,
   rows,
 });
 

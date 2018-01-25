@@ -7,7 +7,7 @@ class Card extends Component {
         <header className="Card-header">
           <h4 className="Card-permalink">DESIGN-1</h4>
         </header>
-        <p className="Card-title">Design the column layout</p>
+        <p className="Card-title">{this.props.card.title}</p>
       </article>
     );
   }
