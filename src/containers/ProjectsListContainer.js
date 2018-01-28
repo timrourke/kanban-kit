@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import ProjectsList from './../components/ProjectsList';
 import {
+  deleteProject,
+} from './../actions/projects';
+import {
   showCreateProjectModal,
   hideCreateProjectModal,
 } from './../actions/modals';
@@ -11,11 +14,14 @@ const mapStateToProps = ({modals, projects}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  showCreateProjectModal() {
-    dispatch(showCreateProjectModal());
+  deleteProject(projectId) {
+    dispatch(deleteProject(projectId));
   },
   hideCreateProjectModal() {
     dispatch(hideCreateProjectModal());
+  },
+  showCreateProjectModal() {
+    dispatch(showCreateProjectModal());
   },
 });
 

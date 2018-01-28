@@ -47,6 +47,15 @@ th {
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &.table-button-column {
+    padding: 1em 0.5em;
+    width: 3em;
+
+    &:last-of-type {
+      width: 3.5em;
+    }
+  }
 }
 
 tr {

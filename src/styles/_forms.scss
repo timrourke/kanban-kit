@@ -42,6 +42,29 @@ input[type='reset'] {
   }
 }
 
+.button.button--icon {
+  background: #ccc;
+  border: 0.25em solid #ccc;
+  border-radius: 100%;
+  position: relative;
+  width: 2em;
+
+  &:hover {
+    background: #bbb;
+    border-color: #bbb;
+  }
+}
+
+.button.button--icon svg {
+  fill: #444;
+  height: 75%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 75%;
+}
+
 input[type='password'],
 input[type='search'],
 input[type='text'] {
