@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import withRouterAndQueryParsing from './withRouterAndQueryParsing';
 import { parseDate } from './../utils/date';
 import qs from 'query-string';
+import Icon from './Icon';
 
 /**
  * Hide the create project modal
@@ -106,6 +107,7 @@ class ProjectsList extends Component {
                 <th>Title</th>
                 <th>Created At</th>
                 <th>Updated At</th>
+                <th className="table-button-column"></th>
               </tr>
             </thead>
             <tbody>
@@ -115,13 +117,31 @@ class ProjectsList extends Component {
                 return (
                   <tr key={project.id}>
                     <td>
-                      <Link to={projectLink}>{project.title}</Link>
+                      <Link
+                        title={project.title}
+                        to={projectLink}
+                      >{project.title}</Link>
                     </td>
                     <td>
-                      <Link to={projectLink}>{parseDate(project.createdAt)}</Link>
+                      <Link
+                        title={parseDate(project.createdAt)}
+                        to={projectLink}
+                      >{parseDate(project.createdAt)}</Link>
                     </td>
                     <td>
-                      <Link to={projectLink}>{parseDate(project.updatedAt)}</Link>
+                      <Link
+                        title={parseDate(project.updatedAt)}
+                        to={projectLink}
+                      >{parseDate(project.updatedAt)}</Link>
+                    </td>
+                    <td className="table-button-column">
+                      <button
+                        className="button button--icon"
+                        onClick={() => this.props.deleteProject(project.id)}
+                        title="Delete Project"
+                      >
+                        <Icon iconId="#delete" />
+                      </button>
                     </td>
                   </tr>
                 );
